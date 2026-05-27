@@ -99,6 +99,59 @@ footer{background:var(--dark);padding:36px 48px;border-top:1px solid rgba(245,19
 .footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s;}
 .footer-links a:hover{color:var(--gold);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+.coach-card-link{cursor:pointer;text-decoration:none;color:inherit;display:block;}
+.coach-card-link .coach-card{transition:border-color .3s,transform .3s;}
+.coach-card-link:hover .coach-card{border-color:rgba(245,194,0,.5);transform:translateY(-4px);}
+.view-profile{display:inline-flex;align-items:center;gap:8px;margin-top:18px;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;border-bottom:1px solid rgba(245,194,0,.3);padding-bottom:2px;transition:border-color .2s;}
+.coach-card-link:hover .view-profile{border-color:var(--gold);}
+#coachProfile{display:none;position:fixed;inset:0;z-index:1100;background:var(--black);overflow-y:auto;animation:profileIn .35s ease;}
+#coachProfile.active{display:block;}
+@keyframes profileIn{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+.profile-nav{position:sticky;top:0;z-index:10;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(9,9,9,0.95);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,194,0,.12);}
+.profile-back{display:flex;align-items:center;gap:10px;color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:13px;letter-spacing:3px;text-transform:uppercase;background:none;border:none;cursor:pointer;transition:opacity .2s;}
+.profile-back:hover{opacity:.7;}
+.profile-back svg{width:18px;height:18px;}
+.profile-hero{display:grid;grid-template-columns:auto 1fr;gap:56px;align-items:center;padding:72px 48px 60px;border-bottom:1px solid rgba(255,255,255,.06);}
+.profile-av-wrap{position:relative;}
+.profile-av{width:160px;height:160px;border-radius:50%;background:linear-gradient(135deg,var(--gold2),var(--gold));display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:58px;color:var(--black);position:relative;}
+.profile-av::after{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid rgba(245,194,0,.35);}
+.profile-av-badge{position:absolute;bottom:4px;right:-8px;background:var(--gold);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:900;letter-spacing:1.5px;padding:4px 12px;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+.profile-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(44px,7vw,80px);line-height:.9;color:var(--white);margin-bottom:8px;}
+.profile-title{color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:14px;letter-spacing:4px;text-transform:uppercase;margin-bottom:6px;}
+.profile-cert{color:#bbb;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;opacity:.7;}
+.profile-contact-row{display:flex;gap:20px;flex-wrap:wrap;}
+.profile-contact-pill{display:flex;align-items:center;gap:8px;background:rgba(245,194,0,.07);border:1px solid rgba(245,194,0,.2);padding:8px 16px;font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:1.5px;color:#bbb;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+.profile-contact-pill span{color:var(--gold);}
+.profile-body{padding:60px 48px;max-width:1100px;}
+.profile-section{margin-bottom:60px;}
+.profile-sec-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:12px;}
+.profile-sec-label::before{content:'';display:block;width:22px;height:2px;background:var(--gold);}
+.profile-sec-h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,4vw,48px);line-height:.95;color:var(--white);margin-bottom:20px;}
+.profile-sec-h3 span{color:var(--gold);}
+.profile-bio{font-size:16px;font-weight:300;line-height:1.85;color:#bbb;max-width:720px;}
+.cred-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;}
+.cred-item{background:var(--dark2);border:1px solid rgba(255,255,255,.05);padding:22px 26px;display:flex;gap:16px;align-items:flex-start;}
+.cred-dot{width:8px;height:8px;background:var(--gold);flex-shrink:0;margin-top:6px;clip-path:polygon(50% 0%,100% 50%,50% 100%,0% 50%);}
+.cred-title{font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px;}
+.cred-sub{font-size:12px;font-weight:300;color:var(--gray);}
+.results-table{width:100%;border-collapse:collapse;margin-top:4px;}
+.results-table th{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(245,194,0,.2);padding:10px 16px;text-align:left;}
+.results-table td{font-size:14px;font-weight:300;color:#bbb;padding:11px 16px;border-bottom:1px solid rgba(255,255,255,.04);}
+.results-table tr:hover td{background:rgba(245,194,0,.03);color:#ddd;}
+.result-medal{display:inline-flex;align-items:center;gap:6px;}
+.medal-gold{color:#F5C200;}.medal-silver{color:#C0C0C0;}.medal-bronze{color:#CD7F32;}
+.athletes-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.athlete-card{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-left:3px solid var(--gold);padding:22px 24px;}
+.athlete-name{font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;}
+.athlete-achieve{font-size:13px;font-weight:300;line-height:1.7;color:#bbb;}
+.competencies-wrap{display:flex;flex-wrap:wrap;gap:10px;}
+.comp-tag{background:rgba(245,194,0,.07);border:1px solid rgba(245,194,0,.2);color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:8px 18px;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+@media(max-width:768px){
+  .profile-hero{grid-template-columns:1fr;gap:32px;padding:48px 20px 40px;}
+  .profile-av{width:120px;height:120px;font-size:44px;}
+  .profile-body{padding:40px 20px;}
+  .profile-nav{padding:0 20px;}
+}
 @media(max-width:768px){
   nav{padding:0 20px;}.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}
   .nav-links.open{display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;background:var(--dark);padding:28px 20px;gap:18px;border-bottom:1px solid rgba(245,194,0,.2);}
@@ -160,8 +213,8 @@ footer{background:var(--dark);padding:36px 48px;border-top:1px solid rgba(245,19
     </div>
   </div>
   <div class="hero-stats">
-    <div><div class="stat-num">12+</div><div class="stat-lbl">Years Coaching</div></div>
-    <div><div class="stat-num">200+</div><div class="stat-lbl">Athletes Trained</div></div>
+    <div><div class="stat-num">6+</div><div class="stat-lbl">Years Coaching</div></div>
+    <div><div class="stat-num">50+</div><div class="stat-lbl">Athletes Trained</div></div>
     <div><div class="stat-num">94%</div><div class="stat-lbl">PB Improvement</div></div>
   </div>
   <div class="hero-track"></div>
@@ -174,7 +227,7 @@ footer{background:var(--dark);padding:36px 48px;border-top:1px solid rgba(245,19
   <p class="sec-sub">Structured programs built on biomechanics, periodisation, and explosive power development — tailored to every stage of your sprint career.</p>
   <div class="prog-grid">
     <div class="prog-card"><span class="prog-icon">⚡</span><div class="prog-title">Youth Development</div><p class="prog-desc">Foundations-first training for athletes aged 10–17. Build speed, coordination and athletic literacy in a high-energy environment.</p><span class="prog-tag">Ages 10–17</span></div>
-    <div class="prog-card"><span class="prog-icon">🏃</span><div class="prog-title">Competitive Sprint</div><p class="prog-desc">Advanced periodised programming for 100m, 200m and 400m athletes targeting state and national championships.</p><span class="prog-tag">Competition Track</span></div>
+    <div class="prog-card"><span class="prog-icon">🏃</span><div class="prog-title">Competitive Sprint</div><p class="prog-desc">Advanced periodised programming for 100m, 200m and 400m athletes, with specialist coaching in 110m Hurdles — targeting state and national championships.</p><span class="prog-tag">Competition Track</span></div>
     <div class="prog-card"><span class="prog-icon">💪</span><div class="prog-title">Strength &amp; Power</div><p class="prog-desc">S&amp;C integration designed for sprinters — plyometrics, Olympic lifting fundamentals, and sprint-specific resistance training.</p><span class="prog-tag">All Levels</span></div>
     <div class="prog-card"><span class="prog-icon">🎯</span><div class="prog-title">Elite Performance</div><p class="prog-desc">One-on-one coaching for high-performance athletes. Video analysis, individualised load management, and race strategy.</p><span class="prog-tag">1-on-1</span></div>
     <div class="prog-card"><span class="prog-icon">🔬</span><div class="prog-title">Sprint Clinics</div><p class="prog-desc">Intensive weekend workshops on acceleration, max velocity and race execution. Open to all clubs and backgrounds.</p><span class="prog-tag">Weekend Intensive</span></div>
@@ -187,13 +240,19 @@ footer{background:var(--dark);padding:36px 48px;border-top:1px solid rgba(245,19
   <div class="sec-label">Meet the Team</div>
   <h2 class="sec-h2">OUR <span>COACHES</span></h2>
   <div class="coaches-grid">
+    <a class="coach-card-link" onclick="openProfile()" href="javascript:void(0)">
     <div class="coach-card">
       <div class="coach-av">RK<span class="coach-badge">HEAD COACH</span></div>
       <div class="coach-name">Ranga Kelum</div>
       <div class="coach-role">Head Coach &amp; Founder</div>
-      <p class="coach-bio">Ranga Kelum is one of Australia's most respected sprint development coaches. With over a decade of elite-level experience, he has mentored athletes to national titles and international competition. His approach combines cutting-edge biomechanical insight with a deeply human understanding of athlete development.</p>
-      <div class="tags"><span class="tag">100m / 200m</span><span class="tag">Acceleration</span><span class="tag">Race Strategy</span><span class="tag">Video Analysis</span></div>
+      <p class="coach-bio">World Athletics CECS certified coach and former elite 110m hurdler. Ranga brings first-hand competitive experience and international training credentials to every session — forging athletes who compete at national and international level.</p>
+      <div class="tags"><span class="tag">100m / 200m / 400m</span><span class="tag">110m Hurdles</span><span class="tag">Periodisation</span><span class="tag">High Performance</span></div>
+      <div class="view-profile">
+        <svg viewBox="0 0 18 18" fill="none" width="14" height="14"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.5"/><path d="M9 6v6M6 9h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        View Full Profile
+      </div>
     </div>
+    </a>
     <div class="coach-card">
       <div class="coach-av" style="background:linear-gradient(135deg,#2a6496,#3a86c8);">RK<span class="coach-badge">MANAGER</span></div>
       <div class="coach-name">Ranil Karunarathne</div>
@@ -280,7 +339,145 @@ footer{background:var(--dark);padding:36px 48px;border-top:1px solid rgba(245,19
   </ul>
 </footer>
 
+<!-- COACH RANGA PROFILE PAGE -->
+<div id="coachProfile">
+  <nav class="profile-nav">
+    <button class="profile-back" onclick="closeProfile()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+      Back to SprintLab
+    </button>
+    <a href="#register" class="nav-cta" onclick="closeProfile()">Enrol Now</a>
+  </nav>
+
+  <div class="profile-hero">
+    <div class="profile-av-wrap">
+      <div class="profile-av">RK<span class="profile-av-badge">HEAD COACH</span></div>
+    </div>
+    <div>
+      <div class="profile-title">Athletics Coach &amp; Sports Instructor · Sprint Coaching Specialist</div>
+      <h1 class="profile-name">RANGA<br>KELUM</h1>
+      <div class="profile-cert">World Athletics CECS Certified — Coach No. 60021</div>
+      <div class="profile-contact-row">
+        <div class="profile-contact-pill">📍 <span>No 77 Mangalathiriya, Kalagedihena</span></div>
+        <div class="profile-contact-pill">📞 <span>071 518 1162</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="profile-body">
+
+    <div class="profile-section">
+      <div class="profile-sec-label">About</div>
+      <h2 class="profile-sec-h3">COACHING <span>PHILOSOPHY</span></h2>
+      <p class="profile-bio">Accomplished athletics professional and World Athletics CECS Level 1 certified coach with extensive experience in hurdles, sprint coaching, and athletic development. Formerly a competitive 110m hurdler and 2009 Junior South Asian Games team captain, Ranga brings first-hand elite experience to his coaching practice. He holds multiple academic qualifications in sport management, coaching, and business, and has trained at the IAAF High Performance Centre in Kuala Lumpur.</p>
+    </div>
+
+    <div class="profile-section">
+      <div class="profile-sec-label">Qualifications</div>
+      <h2 class="profile-sec-h3">CREDENTIALS &amp; <span>CERTIFICATIONS</span></h2>
+      <div class="cred-grid">
+        <div class="cred-item"><div class="cred-dot"></div><div><div class="cred-title">World Athletics CECS Level 1 Coach</div><div class="cred-sub">Coach Number 60021</div></div></div>
+        <div class="cred-item"><div class="cred-dot"></div><div><div class="cred-title">IAAF High Performance Training Centre</div><div class="cred-sub">One Month Intensive Program — Kuala Lumpur</div></div></div>
+        <div class="cred-item"><div class="cred-dot"></div><div><div class="cred-title">Professional Diploma in Sports Psychology</div><div class="cred-sub">SLQF Level 3 (In Progress)</div></div></div>
+        <div class="cred-item"><div class="cred-dot"></div><div><div class="cred-title">Diploma in Sport Management &amp; Coaching</div><div class="cred-sub">University of Kelaniya</div></div></div>
+        <div class="cred-item"><div class="cred-dot"></div><div><div class="cred-title">Diploma in Sports Massage Therapy</div><div class="cred-sub">Colombo School</div></div></div>
+        <div class="cred-item"><div class="cred-dot"></div><div><div class="cred-title">Diploma in Business Management</div><div class="cred-sub">University of Kelaniya</div></div></div>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <div class="profile-sec-label">Athletic Career — 110m Hurdles</div>
+      <h2 class="profile-sec-h3">COMPETITIVE <span>RECORD</span></h2>
+      <table class="results-table">
+        <thead><tr><th>Year</th><th>Competition</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>2006</td><td>School National Championships</td><td class="result-medal"><span class="medal-bronze">▲</span> 3rd Place</td></tr>
+          <tr><td>2006</td><td>Junior National Championships</td><td class="result-medal"><span class="medal-bronze">▲</span> 3rd Place</td></tr>
+          <tr><td>2007</td><td>Junior SAAF Games</td><td class="result-medal"><span class="medal-bronze">▲</span> Bronze Medal</td></tr>
+          <tr><td>2007</td><td>Junior National Championships</td><td class="result-medal"><span class="medal-gold">★</span> 1st Place</td></tr>
+          <tr><td>2007</td><td>John Tarbet Championship</td><td class="result-medal"><span class="medal-gold">★</span> 1st Place (Record)</td></tr>
+          <tr><td>2007</td><td>School National Championships</td><td class="result-medal"><span class="medal-gold">★</span> 1st Place</td></tr>
+          <tr><td>2008</td><td>Junior National Championships</td><td class="result-medal"><span class="medal-silver">●</span> 2nd Place (Record)</td></tr>
+          <tr><td>2008</td><td>John Tarbet Championship</td><td class="result-medal"><span class="medal-gold">★</span> 1st Place (Record)</td></tr>
+          <tr><td>2008</td><td>School National Championships</td><td class="result-medal"><span class="medal-gold">★</span> 1st Place</td></tr>
+          <tr><td>2009</td><td>Junior National Championships</td><td class="result-medal"><span class="medal-gold">★</span> 1st Place</td></tr>
+          <tr><td>2009</td><td>John Tarbet Championship</td><td class="result-medal"><span class="medal-silver">●</span> 2nd Place</td></tr>
+          <tr><td>2009</td><td>School National Championships</td><td class="result-medal"><span class="medal-gold">★</span> 1st Place</td></tr>
+          <tr><td>2009</td><td>Junior South Asian Games</td><td class="result-medal"><span class="medal-gold">★</span> Team Captain</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="profile-section">
+      <div class="profile-sec-label">Coaching Achievements</div>
+      <h2 class="profile-sec-h3">ATHLETES UNDER <span>GUIDANCE</span></h2>
+      <div style="margin-bottom:28px;">
+        <div class="profile-sec-label" style="margin-bottom:12px;">Gateway School</div>
+        <div class="athletes-grid">
+          <div class="athlete-card">
+            <div class="athlete-name">Silaksha Nivan</div>
+            <div class="athlete-achieve">ISAC Meet: 4×100m Gold Medallist (Meet Record) · 100m Silver · 400m Silver · 400×4 Silver</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="profile-sec-label" style="margin-bottom:12px;">National &amp; International Athletes</div>
+        <div class="athletes-grid">
+          <div class="athlete-card">
+            <div class="athlete-name">Pabasara Niku</div>
+            <div class="athlete-achieve">400m — Asian Medallist</div>
+          </div>
+          <div class="athlete-card">
+            <div class="athlete-name">Janidu Lakvijaya</div>
+            <div class="athlete-achieve">110m Hurdles — Sri Lankan National Record Holder</div>
+          </div>
+          <div class="athlete-card">
+            <div class="athlete-name">Fasil Udayar</div>
+            <div class="athlete-achieve">100m — World Military Games Participant</div>
+          </div>
+          <div class="athlete-card">
+            <div class="athlete-name">Niroshan Sanjaya Mayadunna</div>
+            <div class="athlete-achieve">Sri Lanka Masters National Record Holder</div>
+          </div>
+          <div class="athlete-card">
+            <div class="athlete-name">Ryan Mallawa Arachchige</div>
+            <div class="athlete-achieve">Australian Junior NSW State Athlete</div>
+          </div>
+          <div class="athlete-card" style="border-left-color:rgba(245,194,0,.4);">
+            <div class="athlete-name" style="color:var(--gold);">Kalinga Kumarage</div>
+            <div class="athlete-achieve">400m National No. 1 &amp; Asian Championship Medallist <span style="color:var(--gold);font-size:11px;">(as Trainer)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <div class="profile-sec-label">Expertise</div>
+      <h2 class="profile-sec-h3">CORE <span>COMPETENCIES</span></h2>
+      <div class="competencies-wrap">
+        <span class="comp-tag">Sprint &amp; Hurdles Technique</span>
+        <span class="comp-tag">Performance Programming</span>
+        <span class="comp-tag">Periodisation</span>
+        <span class="comp-tag">Sports Massage Therapy</span>
+        <span class="comp-tag">Injury Prevention</span>
+        <span class="comp-tag">Youth &amp; Junior Development</span>
+        <span class="comp-tag">Sports Administration</span>
+        <span class="comp-tag">High Performance Environments</span>
+        <span class="comp-tag">100m / 200m / 400m</span>
+        <span class="comp-tag">110m Hurdles Specialist</span>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:40px 0 20px;">
+      <a href="#register" class="btn-gold" onclick="closeProfile()">Train With Ranga</a>
+    </div>
+
+  </div>
+</div>
+
 <script>
+function openProfile(){const p=document.getElementById('coachProfile');p.classList.add('active');p.scrollTop=0;document.body.style.overflow='hidden';}
+function closeProfile(){document.getElementById('coachProfile').classList.remove('active');document.body.style.overflow='';}
 const REG_URL='https://script.google.com/macros/s/AKfycbzo-Yh8L99a8TKxjMySUmLHYpNLyB-zqouQsr8pw2tcllS7lSMOPSkBC8eJgoXrqdtI/exec';
 const CONTACT_URL='https://script.google.com/macros/s/AKfycbx2CpVarrDseoVr_Pj-f5YQJpRFPukgkeHnWtpwj_-Cb4dLNUbxy_-EJdz5yoUU5Im8/exec';
 function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
