@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SprintLab Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,700&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#F5C200;--gold2:#C99A00;--black:#090909;--dark:#111;--dark2:#191919;--white:#fff;--gray:#888;--lgray:#bbb;--red:#FF4500;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{font-family:'Barlow',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-thumb{background:var(--gold);}
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:66px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(9,9,9,0.93);backdrop-filter:blur(14px);border-bottom:1px solid rgba(245,194,0,0.12);}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}.logo-svg{height:40px;}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{color:#bbb;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:2.5px;text-transform:uppercase;transition:color .2s;}
+.nav-links a:hover{color:var(--gold);}
+.nav-cta{background:var(--gold);color:var(--black);padding:10px 26px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:all .2s;}
+.nav-cta:hover{background:#fff;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--gold);}
+#hero{min-height:100vh;display:flex;align-items:center;padding:100px 48px 80px;position:relative;overflow:hidden;background:var(--black);}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 75% 50%,rgba(245,194,0,0.06) 0%,transparent 70%),radial-gradient(ellipse 35% 70% at 15% 85%,rgba(255,69,0,0.04) 0%,transparent 70%);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(245,194,0,0.035) 1px,transparent 1px),linear-gradient(90deg,rgba(245,194,0,0.035) 1px,transparent 1px);background-size:56px 56px;}
+.hero-track{position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,transparent 0%,var(--gold) 30%,var(--gold) 65%,transparent 100%);}
+.hero-runner-bg{position:absolute;right:-2%;top:50%;transform:translateY(-50%);width:48%;opacity:.13;pointer-events:none;}
+.hero-content{position:relative;z-index:2;max-width:700px;}
+.hero-eyebrow{font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:6px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;display:flex;align-items:center;gap:14px;animation:fadeUp .7s ease both;}
+.hero-eyebrow::before{content:'';display:block;width:30px;height:2px;background:var(--gold);}
+.hero-h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(70px,11vw,136px);line-height:.88;color:var(--white);animation:fadeUp .8s .1s ease both;}
+.hero-h1 span{color:var(--gold);display:block;}
+.hero-academy{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,3.5vw,44px);letter-spacing:10px;color:var(--gray);margin-bottom:28px;animation:fadeUp .8s .2s ease both;}
+.hero-p{font-size:16px;font-weight:300;line-height:1.8;color:#bbb;max-width:520px;margin-bottom:44px;animation:fadeUp .8s .3s ease both;}
+.hero-btns{display:flex;gap:16px;flex-wrap:wrap;animation:fadeUp .8s .4s ease both;}
+.btn-gold{background:var(--gold);color:var(--black);padding:15px 42px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .2s;display:inline-block;}
+.btn-gold:hover{background:#fff;transform:translateY(-2px);}
+.btn-ghost{border:2px solid rgba(245,194,0,.45);color:var(--gold);padding:13px 42px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;clip-path:polygon(10px 0%,100% 0%,calc(100% - 10px) 100%,0% 100%);transition:all .2s;display:inline-block;}
+.btn-ghost:hover{background:rgba(245,194,0,.08);}
+.hero-stats{position:absolute;right:56px;bottom:90px;z-index:2;display:flex;gap:44px;animation:fadeUp .9s .6s ease both;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:50px;color:var(--gold);line-height:1;}
+.stat-lbl{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gray);margin-top:3px;}
+.divider{height:3px;background:linear-gradient(90deg,var(--gold) 0%,#FF4500 45%,transparent 100%);}
+section{padding:96px 48px;}
+.sec-label{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:12px;}
+.sec-label::before{content:'';display:block;width:22px;height:2px;background:var(--gold);}
+.sec-h2{font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,72px);line-height:.93;color:var(--white);margin-bottom:20px;}
+.sec-h2 span{color:var(--gold);}
+.sec-sub{font-size:16px;font-weight:300;line-height:1.8;color:var(--gray);max-width:540px;}
+#programs{background:var(--dark);}
+.prog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(275px,1fr));gap:2px;margin-top:56px;}
+.prog-card{background:var(--dark2);padding:42px 34px;position:relative;overflow:hidden;transition:transform .3s;}
+.prog-card:hover{transform:translateY(-4px);}
+.prog-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.prog-card:hover::before{transform:scaleX(1);}
+.prog-icon{font-size:34px;margin-bottom:18px;display:block;}
+.prog-title{font-family:'Barlow Condensed',sans-serif;font-size:21px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;}
+.prog-desc{font-size:14px;font-weight:300;line-height:1.75;color:var(--gray);margin-bottom:22px;}
+.prog-tag{display:inline-block;border:1px solid rgba(245,194,0,.3);color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:4px 12px;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+#coaches{background:var(--black);}
+.coaches-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:28px;margin-top:56px;}
+.coach-card{background:var(--dark2);padding:38px;border:1px solid rgba(255,255,255,.05);transition:border-color .3s;}
+.coach-card:hover{border-color:rgba(245,194,0,.3);}
+.coach-av{width:96px;height:96px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--black);margin-bottom:22px;position:relative;background:linear-gradient(135deg,var(--gold2),var(--gold));}
+.coach-av::after{content:'';position:absolute;inset:-4px;border-radius:50%;border:2px solid rgba(245,194,0,.3);}
+.coach-badge{position:absolute;top:-6px;right:-6px;background:var(--gold);color:var(--black);font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:900;letter-spacing:1px;padding:3px 8px;clip-path:polygon(4px 0%,100% 0%,calc(100% - 4px) 100%,0% 100%);}
+.coach-name{font-family:'Barlow Condensed',sans-serif;font-size:26px;font-weight:900;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.coach-role{color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:12px;letter-spacing:3px;text-transform:uppercase;margin-bottom:18px;}
+.coach-bio{font-size:14px;font-weight:300;line-height:1.8;color:#bbb;margin-bottom:22px;}
+.tags{display:flex;flex-wrap:wrap;gap:8px;}
+.tag{background:rgba(245,194,0,.09);color:var(--gold);font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:5px 13px;clip-path:polygon(5px 0%,100% 0%,calc(100% - 5px) 100%,0% 100%);}
+#register{background:var(--dark);position:relative;overflow:hidden;}
+.form-wrap{max-width:700px;margin-top:56px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.fg{display:flex;flex-direction:column;gap:7px;}
+.fg.full{grid-column:1/-1;}
+.fg label{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);}
+.fg input,.fg select,.fg textarea{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);color:var(--white);padding:13px 16px;font-family:'Barlow',sans-serif;font-size:14px;outline:none;transition:border-color .2s;width:100%;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);background:rgba(245,194,0,.04);}
+.fg select option{background:var(--dark);}
+.fg textarea{resize:vertical;min-height:96px;}
+.consent-row{display:flex;align-items:flex-start;gap:12px;}
+.consent-row input[type=checkbox]{width:18px;height:18px;clip-path:none;flex-shrink:0;accent-color:var(--gold);cursor:pointer;margin-top:2px;}
+.consent-row label{font-size:13px;font-weight:300;color:var(--gray);font-family:'Barlow',sans-serif;cursor:pointer;}
+.btn-submit{width:100%;background:var(--gold);color:var(--black);border:none;padding:17px;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:15px;letter-spacing:4px;text-transform:uppercase;cursor:pointer;clip-path:polygon(12px 0%,100% 0%,calc(100% - 12px) 100%,0% 100%);transition:all .2s;margin-top:28px;}
+.btn-submit:hover:not(:disabled){background:#fff;transform:translateY(-2px);}
+.btn-submit:disabled{opacity:.6;cursor:not-allowed;}
+.form-note{font-size:12px;color:var(--gray);margin-top:14px;}
+.form-success{display:none;background:rgba(245,194,0,.08);border:1px solid var(--gold);padding:22px 28px;margin-top:20px;font-family:'Barlow Condensed',sans-serif;font-size:17px;letter-spacing:1px;color:var(--gold);clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);}
+.form-error{display:none;background:rgba(255,69,0,.08);border:1px solid #FF4500;padding:22px 28px;margin-top:20px;font-family:'Barlow Condensed',sans-serif;font-size:17px;letter-spacing:1px;color:#FF4500;}
+#contact{background:var(--black);border-top:1px solid rgba(255,255,255,.05);}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:56px;}
+.citem{display:flex;gap:18px;align-items:flex-start;margin-bottom:32px;}
+.cicon{width:42px;height:42px;background:rgba(245,194,0,.1);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;clip-path:polygon(6px 0%,100% 0%,calc(100% - 6px) 100%,0% 100%);}
+.citem-lbl{font-family:'Barlow Condensed',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.citem-val{font-size:14px;color:#bbb;font-weight:300;line-height:1.7;}
+footer{background:var(--dark);padding:36px 48px;border-top:1px solid rgba(245,194,0,.12);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;}
+.footer-copy{font-size:12px;color:var(--gray);}
+.footer-links{display:flex;gap:22px;list-style:none;}
+.footer-links a{font-family:'Barlow Condensed',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gray);text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:var(--gold);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
+@media(max-width:768px){
+  nav{padding:0 20px;}.nav-links,.nav-cta{display:none;}.hamburger{display:flex;}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:66px;left:0;right:0;background:var(--dark);padding:28px 20px;gap:18px;border-bottom:1px solid rgba(245,194,0,.2);}
+  section{padding:68px 20px;}#hero{padding:96px 20px 70px;}.hero-stats,.hero-runner-bg{display:none;}
+  .form-grid{grid-template-columns:1fr;}.fg.full{grid-column:1;}.contact-grid{grid-template-columns:1fr;gap:36px;}
+  footer{flex-direction:column;align-items:flex-start;padding:28px 20px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#hero" class="nav-logo">
+    <svg class="logo-svg" viewBox="0 0 230 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="2" y1="16" x2="26" y2="16" stroke="#F5C200" stroke-width="2.5" stroke-linecap="round"/>
+      <line x1="2" y1="23" x2="21" y2="23" stroke="#F5C200" stroke-width="1.5" stroke-linecap="round" opacity=".55"/>
+      <line x1="2" y1="30" x2="15" y2="30" stroke="#F5C200" stroke-width="1" stroke-linecap="round" opacity=".25"/>
+      <circle cx="48" cy="8" r="4.5" fill="white"/>
+      <path d="M48 12.5 L44 23 L39 34" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M48 12.5 L53 22 L57 31" stroke="white" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M44 23 L53 22" stroke="white" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M39 34 L36 42 M39 34 L43 42" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+      <path d="M57 31 L61 39" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+      <text x="70" y="31" font-family="'Bebas Neue',sans-serif" font-size="27" fill="white" letter-spacing="1.5">SPRINT</text>
+      <text x="162" y="31" font-family="'Bebas Neue',sans-serif" font-size="27" fill="#F5C200" letter-spacing="1.5">LAB</text>
+      <text x="70" y="43" font-family="'Barlow Condensed',sans-serif" font-size="9" fill="#666" letter-spacing="6">ACADEMY</text>
+    </svg>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#coaches">Coaches</a></li>
+    <li><a href="#register">Register</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#register" class="nav-cta">Enrol Now</a>
+  <button class="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></button>
+</nav>
+
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <svg class="hero-runner-bg" viewBox="0 0 380 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="270" cy="46" r="38" fill="white"/>
+    <path d="M270 84 L248 158 L214 256" stroke="white" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M270 84 L302 152 L338 236" stroke="white" stroke-width="22" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M248 158 L302 152" stroke="white" stroke-width="22" stroke-linecap="round"/>
+    <path d="M214 256 L185 352 L158 444" stroke="white" stroke-width="22" stroke-linecap="round"/>
+    <path d="M214 256 L238 352 L256 444" stroke="white" stroke-width="22" stroke-linecap="round"/>
+    <path d="M338 236 L366 322" stroke="white" stroke-width="22" stroke-linecap="round"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Elite Sprint Training · Sydney</div>
+    <h1 class="hero-h1">SPRINT<span>LAB</span></h1>
+    <div class="hero-academy">Academy</div>
+    <p class="hero-p">Where explosive speed meets scientific training. Australia's premier sprint development programme — engineered for athletes who refuse to settle for anything less than elite.</p>
+    <div class="hero-btns">
+      <a href="#register" class="btn-gold">Start Training</a>
+      <a href="#programs" class="btn-ghost">Our Programs</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">12+</div><div class="stat-lbl">Years Coaching</div></div>
+    <div><div class="stat-num">200+</div><div class="stat-lbl">Athletes Trained</div></div>
+    <div><div class="stat-num">94%</div><div class="stat-lbl">PB Improvement</div></div>
+  </div>
+  <div class="hero-track"></div>
+</section>
+<div class="divider"></div>
+
+<section id="programs">
+  <div class="sec-label">What We Offer</div>
+  <h2 class="sec-h2">TRAINING <span>PROGRAMS</span></h2>
+  <p class="sec-sub">Structured programs built on biomechanics, periodisation, and explosive power development — tailored to every stage of your sprint career.</p>
+  <div class="prog-grid">
+    <div class="prog-card"><span class="prog-icon">⚡</span><div class="prog-title">Youth Development</div><p class="prog-desc">Foundations-first training for athletes aged 10–17. Build speed, coordination and athletic literacy in a high-energy environment.</p><span class="prog-tag">Ages 10–17</span></div>
+    <div class="prog-card"><span class="prog-icon">🏃</span><div class="prog-title">Competitive Sprint</div><p class="prog-desc">Advanced periodised programming for 100m, 200m and 400m athletes targeting state and national championships.</p><span class="prog-tag">Competition Track</span></div>
+    <div class="prog-card"><span class="prog-icon">💪</span><div class="prog-title">Strength &amp; Power</div><p class="prog-desc">S&amp;C integration designed for sprinters — plyometrics, Olympic lifting fundamentals, and sprint-specific resistance training.</p><span class="prog-tag">All Levels</span></div>
+    <div class="prog-card"><span class="prog-icon">🎯</span><div class="prog-title">Elite Performance</div><p class="prog-desc">One-on-one coaching for high-performance athletes. Video analysis, individualised load management, and race strategy.</p><span class="prog-tag">1-on-1</span></div>
+    <div class="prog-card"><span class="prog-icon">🔬</span><div class="prog-title">Sprint Clinics</div><p class="prog-desc">Intensive weekend workshops on acceleration, max velocity and race execution. Open to all clubs and backgrounds.</p><span class="prog-tag">Weekend Intensive</span></div>
+    <div class="prog-card"><span class="prog-icon">🌐</span><div class="prog-title">Online Coaching</div><p class="prog-desc">Remote programming with video analysis, weekly check-ins and full training plan support. Train anywhere.</p><span class="prog-tag">Remote</span></div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section id="coaches">
+  <div class="sec-label">Meet the Team</div>
+  <h2 class="sec-h2">OUR <span>COACHES</span></h2>
+  <div class="coaches-grid">
+    <div class="coach-card">
+      <div class="coach-av">RK<span class="coach-badge">HEAD COACH</span></div>
+      <div class="coach-name">Ranga Kelum</div>
+      <div class="coach-role">Head Coach &amp; Founder</div>
+      <p class="coach-bio">Ranga Kelum is one of Australia's most respected sprint development coaches. With over a decade of elite-level experience, he has mentored athletes to national titles and international competition. His approach combines cutting-edge biomechanical insight with a deeply human understanding of athlete development.</p>
+      <div class="tags"><span class="tag">100m / 200m</span><span class="tag">Acceleration</span><span class="tag">Race Strategy</span><span class="tag">Video Analysis</span></div>
+    </div>
+    <div class="coach-card">
+      <div class="coach-av" style="background:linear-gradient(135deg,#2a6496,#3a86c8);">RK<span class="coach-badge">MANAGER</span></div>
+      <div class="coach-name">Ranil Karunarathne</div>
+      <div class="coach-role">Academy Manager</div>
+      <p class="coach-bio">Ranil Karunarathne brings strong organisational leadership and a passion for athlete development to SprintLab Academy. As Academy Manager, he oversees day-to-day operations, athlete enrolments, and ensures every member of the SprintLab community receives a world-class experience from their very first session.</p>
+      <div class="tags"><span class="tag">Operations</span><span class="tag">Athlete Relations</span><span class="tag">Administration</span></div>
+    </div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section id="register">
+  <div class="sec-label">Join SprintLab</div>
+  <h2 class="sec-h2">STUDENT <span>REGISTRATION</span></h2>
+  <p class="sec-sub">Complete the form and our coaching team will be in touch within 24 hours.</p>
+  <div class="form-wrap">
+    <form id="regForm">
+      <div class="form-grid">
+        <div class="fg"><label>First Name *</label><input type="text" id="fname" required placeholder="First name"></div>
+        <div class="fg"><label>Last Name *</label><input type="text" id="lname" required placeholder="Last name"></div>
+        <div class="fg"><label>Email *</label><input type="email" id="email" required placeholder="your@email.com"></div>
+        <div class="fg"><label>Phone *</label><input type="tel" id="phone" required placeholder="+61 4XX XXX XXX"></div>
+        <div class="fg"><label>Date of Birth *</label><input type="date" id="dob" required></div>
+        <div class="fg"><label>Gender</label><select id="gender"><option value="">Select...</option><option>Male</option><option>Female</option><option>Non-binary</option><option>Prefer not to say</option></select></div>
+        <div class="fg full"><label>Program of Interest *</label><select id="program" required><option value="">Select a program...</option><option>Youth Development (Ages 10–17)</option><option>Competitive Sprint</option><option>Strength &amp; Power</option><option>Elite Performance (1-on-1)</option><option>Sprint Clinics</option><option>Online Coaching</option></select></div>
+        <div class="fg full"><label>Athletic Experience</label><select id="experience"><option value="">Select level...</option><option>Beginner — No formal training</option><option>Intermediate — Club level</option><option>Advanced — State level</option><option>Elite — National / International</option></select></div>
+        <div class="fg full"><label>Training Goals &amp; Notes</label><textarea id="goals" placeholder="Tell us your sprint goals, best times, and anything else we should know..."></textarea></div>
+        <div class="fg full"><label>Emergency Contact (Name &amp; Phone)</label><input type="text" id="emergency" placeholder="Full name — phone number"></div>
+        <div class="fg full"><div class="consent-row"><input type="checkbox" id="consent" required><label for="consent">I agree to SprintLab Academy's training policies and consent to photo/video use for coaching purposes.</label></div></div>
+      </div>
+      <button type="button" class="btn-submit" id="submitBtn" onclick="submitReg()">Submit Registration</button>
+      <p class="form-note">✓ No payment required. Our team will contact you to confirm your spot.</p>
+    </form>
+    <div class="form-success" id="regSuccess">⚡ Registration received! Coach Ranga will be in touch within 24 hours.</div>
+    <div class="form-error" id="regError">⚠ Something went wrong. Please email coach@sprintlabacademy.com.au directly.</div>
+  </div>
+</section>
+<div class="divider"></div>
+
+<section id="contact">
+  <div class="sec-label">Get in Touch</div>
+  <h2 class="sec-h2">CONTACT <span>US</span></h2>
+  <div class="contact-grid">
+    <div>
+      <div class="citem"><div class="cicon">📍</div><div><div class="citem-lbl">Location</div><div class="citem-val">Sydney Olympic Park Athletics Centre<br>Edwin Flack Ave, Sydney NSW 2127</div></div></div>
+      <div class="citem"><div class="cicon">📧</div><div><div class="citem-lbl">Email</div><div class="citem-val">coach@sprintlabacademy.com.au<br>info@sprintlabacademy.com.au</div></div></div>
+      <div class="citem"><div class="cicon">📞</div><div><div class="citem-lbl">Phone</div><div class="citem-val">+61 (0) 4XX XXX XXX<br>Mon–Sat: 7am – 7pm AEST</div></div></div>
+      <div class="citem"><div class="cicon">🕐</div><div><div class="citem-lbl">Training Hours</div><div class="citem-val">Mon / Wed / Fri: 5:30am &amp; 5:00pm<br>Tue / Thu: 6:00am &amp; 4:30pm<br>Saturday: 7:00am (group sessions)</div></div></div>
+    </div>
+    <div>
+      <form id="contactForm">
+        <div class="form-grid" style="grid-template-columns:1fr;">
+          <div class="fg"><label>Your Name</label><input type="text" id="cname" placeholder="Full name"></div>
+          <div class="fg"><label>Email</label><input type="email" id="cemail" placeholder="your@email.com"></div>
+          <div class="fg"><label>Subject</label><input type="text" id="csubject" placeholder="What's it about?"></div>
+          <div class="fg"><label>Message</label><textarea id="cmsg" style="min-height:130px;" placeholder="Your message..."></textarea></div>
+        </div>
+        <button type="button" class="btn-submit" id="contactBtn" onclick="submitContact()" style="margin-top:20px;">Send Message</button>
+      </form>
+      <div class="form-success" id="contactSuccess" style="margin-top:16px;">✓ Message sent! We will reply within one business day.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="display:flex;align-items:center;gap:10px;">
+    <svg style="height:34px;" viewBox="0 0 200 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="2" y1="13" x2="20" y2="13" stroke="#F5C200" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="36" cy="7" r="3.8" fill="white"/>
+      <path d="M36 10.8 L32 19 L28 27" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M36 10.8 L40 18 L44 26" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M32 19 L40 18" stroke="white" stroke-width="2" stroke-linecap="round"/>
+      <text x="54" y="25" font-family="'Bebas Neue',sans-serif" font-size="20" fill="white">SPRINT</text>
+      <text x="112" y="25" font-family="'Bebas Neue',sans-serif" font-size="20" fill="#F5C200">LAB</text>
+      <text x="54" y="35" font-family="'Barlow Condensed',sans-serif" font-size="8" fill="#555" letter-spacing="5">ACADEMY</text>
+    </svg>
+  </div>
+  <p class="footer-copy">© 2025 SprintLab Academy. All rights reserved.</p>
+  <ul class="footer-links">
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#coaches">Coaches</a></li>
+    <li><a href="#register">Register</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</footer>
+
+<script>
+const REG_URL='https://script.google.com/macros/s/AKfycbzo-Yh8L99a8TKxjMySUmLHYpNLyB-zqouQsr8pw2tcllS7lSMOPSkBC8eJgoXrqdtI/exec';
+const CONTACT_URL='https://script.google.com/macros/s/AKfycbx2CpVarrDseoVr_Pj-f5YQJpRFPukgkeHnWtpwj_-Cb4dLNUbxy_-EJdz5yoUU5Im8/exec';
+function toggleNav(){document.getElementById('navLinks').classList.toggle('open');}
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const el=document.getElementById(a.getAttribute('href').slice(1));if(el)el.scrollIntoView({behavior:'smooth'});document.getElementById('navLinks').classList.remove('open');});});
+const obs=new IntersectionObserver(entries=>{entries.forEach(en=>{if(en.isIntersecting){en.target.style.opacity='1';en.target.style.transform='translateY(0)';}});},{threshold:0.08});
+document.querySelectorAll('.prog-card,.coach-card').forEach(el=>{el.style.opacity='0';el.style.transform='translateY(22px)';el.style.transition='opacity .5s ease,transform .5s ease';obs.observe(el);});
+async function submitReg(){
+  const fname=document.getElementById('fname').value.trim();
+  const lname=document.getElementById('lname').value.trim();
+  const email=document.getElementById('email').value.trim();
+  const phone=document.getElementById('phone').value.trim();
+  const dob=document.getElementById('dob').value;
+  const program=document.getElementById('program').value;
+  const consent=document.getElementById('consent').checked;
+  if(!fname||!lname||!email||!phone||!dob||!program||!consent){alert('Please fill in all required fields and tick the consent box.');return;}
+  const btn=document.getElementById('submitBtn');
+  btn.textContent='Submitting...';btn.disabled=true;
+  const payload=JSON.stringify({
+    type:'registration',
+    firstName:fname,lastName:lname,email,phone,dob,
+    gender:document.getElementById('gender').value,
+    program,experience:document.getElementById('experience').value,
+    goals:document.getElementById('goals').value,
+    emergency:document.getElementById('emergency').value,
+    consent:'Yes'
+  });
+  try{
+    await fetch(REG_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload});
+    document.getElementById('regForm').style.display='none';
+    document.getElementById('regSuccess').style.display='block';
+    window.scrollTo({top:document.getElementById('register').offsetTop-80,behavior:'smooth'});
+    setTimeout(()=>{
+      document.getElementById('regSuccess').style.display='none';
+      document.getElementById('regForm').reset();
+      document.getElementById('regForm').style.display='block';
+      btn.textContent='Submit Registration';btn.disabled=false;
+    },5000);
+  }catch(err){
+    btn.textContent='Submit Registration';btn.disabled=false;
+    document.getElementById('regError').style.display='block';
+  }
+}
+async function submitContact(){
+  const name=document.getElementById('cname').value.trim();
+  const email=document.getElementById('cemail').value.trim();
+  const subject=document.getElementById('csubject').value.trim();
+  const msg=document.getElementById('cmsg').value.trim();
+  if(!name||!email||!msg){alert('Please fill in your name, email and message.');return;}
+  const btn=document.getElementById('contactBtn');
+  btn.textContent='Sending...';btn.disabled=true;
+  const payload=JSON.stringify({type:'contact',name,email,subject,message:msg});
+  try{
+    await fetch(CONTACT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:payload});
+    document.getElementById('contactForm').style.display='none';
+    document.getElementById('contactSuccess').style.display='block';
+    setTimeout(()=>{
+      document.getElementById('contactSuccess').style.display='none';
+      document.getElementById('contactForm').reset();
+      document.getElementById('contactForm').style.display='block';
+      btn.textContent='Send Message';btn.disabled=false;
+    },5000);
+  }catch(err){
+    btn.textContent='Send Message';btn.disabled=false;
+    alert('Something went wrong. Please email us directly at coach@sprintlabacademy.com.au');
+  }
+}
+</script>
+</body>
+</html>
